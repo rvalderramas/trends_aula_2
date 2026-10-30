@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quem fabrica o novo? — Tendências Contemporâneas do Design, Aula 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   1. TOKENS
+   ========================================================= */
+:root{
+  --cor-fundo:#ffffff;
+  --cor-tinta:#000000;
+  --cor-linha:#d8d8d8;
+  --cor-apoio:#6f6f6f;
+
+  --fonte:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+
+  --texto-hero:clamp(3rem,8.5vw,8.5rem);
+  --texto-display:clamp(2.2rem,5.2vw,5.2rem);
+  --texto-titulo:clamp(1.7rem,3vw,3rem);
+  --texto-corpo:clamp(1.1rem,1.4vw,1.6rem);
+  --texto-apoio:clamp(.95rem,1.05vw,1.2rem);
+  --texto-mini:clamp(.78rem,.85vw,.95rem);
+
+  --entrelinha-apertada:1.03;
+  --entrelinha-corpo:1.26;
+  --tracking-apertado:-.025em;
+
+  --margem-pagina:clamp(1.25rem,2.6vw,3rem);
+  --espaco-secao:clamp(3.5rem,7vw,7rem);
+
+  --faixa-fechada:9vh;
+  --faixa-aberta:78vh;
+}
+
+/* =========================================================
+   2. BASE
+   ========================================================= */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--cor-fundo);
+  color:var(--cor-tinta);
+  font-family:var(--fonte);
+  font-size:var(--texto-corpo);
+  line-height:var(--entrelinha-corpo);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p,ol,ul,figure,blockquote{margin:0;padding:0}
+li{list-style:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.pagina{padding:0 var(--margem-pagina)}
+.regra{border:0;border-top:1px solid var(--cor-linha);margin:0}
+:focus-visible{outline:2px solid var(--cor-tinta);outline-offset:4px}
+
+/* =========================================================
+   3. CABEÇALHO  (rola junto com a página)
+   ========================================================= */
+.cabecalho{
+  display:flex;align-items:center;
+  height:clamp(4.5rem,7vw,7rem);
+}
+.cabecalho p{
+  font-weight:700;
+  font-size:clamp(1rem,1.5vw,1.5rem);
+  line-height:.95;
+  letter-spacing:-.02em;
+  text-transform:uppercase;
+  max-width:20ch;
+}
+
+/* =========================================================
+   4. BLOCOS DE TEXTO
+   ========================================================= */
+.abertura{
+  min-height:78vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(1.5rem,4vw,4rem) 0;
+}
+.abertura h1{
+  font-weight:500;
+  font-size:var(--texto-hero);
+  line-height:.98;
+  letter-spacing:-.035em;
+  max-width:14ch;
+}
+.abertura p{
+  margin-top:clamp(1.5rem,3vw,2.5rem);
+  max-width:44ch;
+}
+
+/* Cada bloco ocupa aproximadamente uma tela, com o conteúdo
+   centralizado na vertical. Assim aparece um assunto por vez e o
+   espaçamento deixa de ser a soma acidental de dois paddings. */
+.declaracao{
+  min-height:84vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(2rem,4vw,4rem) 0;
+}
+.declaracao p{
+  font-weight:500;
+  font-size:var(--texto-display);
+  line-height:var(--entrelinha-apertada);
+  letter-spacing:var(--tracking-apertado);
+  max-width:20ch;
+}
+
+/* título estreito à esquerda, texto largo à direita */
+.dupla{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);
+  gap:clamp(1.5rem,5vw,6rem);
+  min-height:84vh;
+  align-content:center;
+  align-items:start;
+  padding:clamp(2rem,4vw,4rem) 0;
+}
+.dupla h2{
+  font-weight:500;
+  font-size:var(--texto-titulo);
+  line-height:var(--entrelinha-apertada);
+  letter-spacing:var(--tracking-apertado);
+}
+.dupla p + p{margin-top:1em}
+.dupla p{max-width:48ch}
+
+/* itens dentro da coluna larga */
+.itens li + li{margin-top:1.1em}
+.itens strong{font-weight:500}
+.itens--numerada{counter-reset:passo}
+.itens--numerada li{
+  display:grid;
+  grid-template-columns:2.6em 1fr;
+  align-items:baseline;
+}
+.itens--numerada li::before{
+  counter-increment:passo;
+  content:counter(passo);
+  color:var(--cor-apoio);
+}
+
+.miudo{
+  font-size:var(--texto-apoio);
+  color:var(--cor-apoio);
+  max-width:52ch;
+}
+.dupla .miudo{margin-top:1.4em}
+
+/* nota operacional para o professor */
+.nota{
+  font-size:var(--texto-apoio);
+  color:var(--cor-apoio);
+  border-left:1px solid var(--cor-linha);
+  padding-left:1em;
+  margin-top:1.6em;
+  max-width:46ch;
+}
+
+/* citação */
+.citacao{
+  min-height:84vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(2rem,4vw,4rem) 0;
+}
+.citacao blockquote p{
+  font-weight:400;
+  font-size:clamp(1.7rem,3.2vw,3.2rem);
+  line-height:1.08;
+  letter-spacing:var(--tracking-apertado);
+  max-width:24ch;
+  text-indent:-.4em;
+}
+/* citações com mais de uma frase pedem corpo menor e linha mais longa */
+.citacao--longa blockquote p{
+  font-size:clamp(1.35rem,2.3vw,2.3rem);
+  line-height:1.16;
+  max-width:34ch;
+}
+.citacao figcaption{
+  margin-top:clamp(1.2rem,2.5vw,2rem);
+  font-size:var(--texto-apoio);
+  color:var(--cor-apoio);
+  max-width:40ch;
+}
+.citacao .depois{
+  margin-top:clamp(1.5rem,3vw,2.5rem);
+  max-width:44ch;
+}
+
+/* =========================================================
+   5. FAIXA DE MÍDIA  —  abre conforme a página rola
+   ========================================================= */
+.midia{
+  margin:0 calc(var(--margem-pagina) * -1);
+  --p:0;
+}
+.midia__janela{
+  height:calc(var(--faixa-fechada) + (var(--faixa-aberta) - var(--faixa-fechada)) * var(--p));
+  overflow:hidden;
+}
+.midia__janela > img{
+  height:100%;
+  transform:scale(calc(1.26 - .26 * var(--p)));
+}
+.midia__credito{
+  padding:.7em var(--margem-pagina) 0;
+  font-size:var(--texto-mini);
+  color:var(--cor-apoio);
+}
+/* capa de bloco: fotografia sangrando na tela inteira, com o título
+   em branco por cima. Um véu escuro garante o contraste do texto
+   independentemente do quanto a fotografia é clara. */
+.capa{
+  position:relative;
+  margin:0 calc(var(--margem-pagina) * -1);
+  min-height:88vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  background:#000;
+  color:#fff;
+}
+.capa img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.capa::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.75) 0%,rgba(0,0,0,.45) 40%,rgba(0,0,0,.15) 100%);
+}
+.capa__titulo{
+  position:relative;
+  z-index:1;
+  padding:clamp(2.5rem,6vw,5rem) var(--margem-pagina) 0;
+  font-weight:500;
+  font-size:var(--texto-display);
+  line-height:var(--entrelinha-apertada);
+  letter-spacing:var(--tracking-apertado);
+  max-width:17ch;
+}
+.capa__credito{
+  position:relative;
+  z-index:1;
+  margin-top:auto;
+  padding:0 var(--margem-pagina) clamp(1rem,2.5vw,2rem);
+  font-size:var(--texto-mini);
+  color:rgba(255,255,255,.72);
+}
+
+/* fundo de reserva enquanto a foto carrega, ou caso ela falhe */
+.foto--a{background:linear-gradient(107deg,#2a2a2a,#7b7b7b 45%,#cfc7bb 75%,#3a3a3a)}
+.foto--b{background:linear-gradient(122deg,#101a24,#33607f 45%,#9db9c6 72%,#16242f)}
+.foto--c{background:linear-gradient(96deg,#151515,#4a4a4a 42%,#b9b4ab 76%,#232323)}
+.foto--d{background:linear-gradient(135deg,#20242b,#5b6472 44%,#b3b8bf 74%,#2a2f37)}
+.foto--e{background:linear-gradient(112deg,#3d2415,#a8703f 40%,#e6c9a8 72%,#5c3a22)}
+.foto--f{background:linear-gradient(88deg,#2b2118,#8a6a4a 44%,#d8c4a8 74%,#3a2c1f)}
+.foto--g{background:linear-gradient(128deg,#1c1c1c,#6e6e6e 42%,#ded9d0 76%,#2a2a2a)}
+.foto--h{background:linear-gradient(104deg,#23301c,#6b7a4b 44%,#cbc39a 74%,#2d3a24)}
+.foto--i{background:linear-gradient(118deg,#1a1e22,#54606b 45%,#c2c8cd 74%,#232a30)}
+.foto--j{background:linear-gradient(94deg,#2c1a24,#8a4a5c 42%,#e0b3a6 74%,#3a2129)}
+.foto--k{background:linear-gradient(100deg,#1e2328,#59636e 44%,#c0c6cc 74%,#272d33)}
+.foto--l{background:linear-gradient(126deg,#26221d,#6f6558 44%,#ccc3b4 74%,#332e27)}
+.foto--m{background:linear-gradient(86deg,#1f2a2e,#5c7f7a 42%,#cbd3bd 74%,#2a3538)}
+.foto--n{background:linear-gradient(114deg,#241d20,#7a5f55 44%,#d5c2b2 74%,#2f2528)}
+
+/* =========================================================
+   6. REFERÊNCIAS
+   ========================================================= */
+.referencias{padding:var(--espaco-secao) 0}
+.referencias h2{
+  font-weight:500;
+  font-size:var(--texto-titulo);
+  line-height:var(--entrelinha-apertada);
+  letter-spacing:var(--tracking-apertado);
+  margin-bottom:clamp(1.5rem,3vw,2.5rem);
+}
+.referencias li{
+  font-size:var(--texto-apoio);
+  max-width:64ch;
+}
+.referencias li + li{margin-top:.9em}
+.referencias em{font-style:normal;font-weight:500}
+
+.rodape{
+  padding:var(--espaco-secao) 0 clamp(2.5rem,5vw,4rem);
+}
+.rodape p{
+  font-size:var(--texto-mini);
+  color:var(--cor-apoio);
+  max-width:70ch;
+}
+.rodape p + p{margin-top:.9em}
+
+/* =========================================================
+   7. TELAS ESTREITAS
+   ========================================================= */
+@media (max-width:760px){
+  .dupla{grid-template-columns:1fr;gap:1.5rem}
+  .abertura,.declaracao,.dupla,.citacao{
+    min-height:0;
+    padding:clamp(3rem,10vw,5rem) 0;
+  }
+  .capa{min-height:70vh}
+  :root{--faixa-aberta:54vh}
+}
+
+/* =========================================================
+   8. MOVIMENTO REDUZIDO
+   ========================================================= */
+@media (prefers-reduced-motion:reduce){
+  .midia{--p:1 !important}
+}
+</style>
+</head>
+<body>
+
+<header class="cabecalho pagina">
+  <p>Tendências Contemporâneas do Design — Aula 3</p>
+</header>
+
+<main>
+
+  <section class="abertura pagina">
+    <h1>&nbsp;Quem fabrica<br>&nbsp;o novo?</h1>
+    <p>&nbsp; &nbsp;De onde vêm as tendências, quem as encontra primeiro&nbsp; &nbsp; &nbsp; &nbsp;e quem ganha (dinheiro com isso.</p><p><br></p>
+  </section>
+
+  <figure class="midia pagina" data-revelar="">
+    <div class="midia__janela foto--a">
+      <img src="https://images.unsplash.com/photo-1613759612065-d5971d32ca49?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Duas pessoas desfocadas diante de uma parede coberta de marcas e imagens impressas">
+    </div>
+    <figcaption class="midia__credito">Fotografia de Brands&amp;People / Unsplash</figcaption>
+  </figure>
+
+  <div class="pagina">
+
+    <section class="dupla">
+      <h2>Onde paramos</h2>
+      <div>
+        <p>Na aula 2 definimos o que é uma tendência. Hoje a pergunta é outra: de onde ela vem, quem a encontra e quem ganha dinheiro com isso.</p>
+      </div>
+    </section>
+
+    <hr class="regra">
+
+    <section class="declaracao">
+      <p>Uma tendência é<br>descoberta ou fabricada?</p><p><br></p><p><br></p>
+    </section>
+
+    <section class="dupla">
+      <h2>Três respostas possíveis</h2>
+      <div>
+        <ul class="itens">
+          <li><b>Descoberta:</b>&nbsp;Ela já existia na cultura e alguém apenas a percebeu primeiro.</li>
+          <li><b>Fabricada:</b>&nbsp;Alguém a inventou e a empurrou para o mercado.</li>
+          <li><b>Ambas:</b>&nbsp;Alguém percebeu algo real e, ao nomeá-lo, mudou o que ele era.</li>
+        </ul>
+        <p class="miudo">Qual dessas vocês acham que é a resposta desta aula?</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Por que isso importa<br>para quem projeta</h2>
+      <div>
+        <p>Você vai receber <b>briefings baseados em relatórios de tendência</b>. Saber como esses relatórios são produzidos<br>é a diferença entre <b>usá-los</b> e <b>obedecê-los</b>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Um lembrete importante</h2>
+      <div>
+        <p>Produtos descartáveis.<br>Estilização formal do produto.<br>O novo como mecanismo de mercado.</p>
+        <p>Não são simples temas da disciplina: são o assunto de hoje.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>O caminho</h2>
+      <div>
+        <ol class="itens itens--numerada">
+          <li>Como a mudança constante virou modelo de negócio</li>
+          <li>Como surgiu a profissão de prever tendências</li>
+          <li>O que essa indústria faz com a cultura que ela observa</li>
+          <li>O que fazer com isso na prática</li>
+        </ol>
+      </div>
+    </section>
+
+    <hr class="regra">
+
+    <section class="capa foto--k">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Braços robóticos trabalhando sobre a carroceria de um veículo em uma fábrica">
+      <h2 class="capa__titulo">Como o novo<br>virou obrigação?</h2>
+      <p class="capa__credito">Fotografia de Lenny Kuhne / Unsplash</p>
+    </section>
+
+    <section class="dupla">
+      <h2>O problema do fabricante</h2>
+      <div>
+        <p>A produção em massa resolve o problema de fazer e cria outro: <b>Como fazer alguém comprar de novo o que já tem<br>e ainda funciona</b>.</p>
+      </div>
+    </section>
+  </div>
+
+  <figure class="midia pagina" data-revelar="">
+    <div class="midia__janela foto--b">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1589793463357-5fb813435467?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Trabalhadores de uniforme azul ao longo de uma linha de montagem em uma fábrica">
+    </div>
+    <figcaption class="midia__credito">Fotografia de Remy Gieling / Unsplash</figcaption>
+  </figure>
+
+  <div class="pagina">
+
+    <section class="dupla">
+      <h2>1932: uma proposta<br>[no mínimo] desconcertante</h2>
+      <div>
+        <p>Bernard London publica <em>Ending the Depression Through Planned Obsolescence</em>. A proposta era dar <b>prazo de validade legal aos produtos</b> para reaquecer a economia.</p>
+        <p><b>Não foi adotada.<br></b>Mas nomeou uma lógica que seria adotada de outro jeito.</p>
+      </div>
+    </section>
+  </div>
+
+  <figure class="midia pagina" data-revelar="">
+    <div class="midia__janela foto--c">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1583737097406-5a4b42b37b97?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Fotografia histórica em preto e branco de pessoas em uma rua">
+    </div>
+    <figcaption class="midia__credito">Fotografia do acervo do Birmingham Museums Trust / Unsplash</figcaption>
+  </figure>
+
+  <div class="pagina">
+
+    <section class="dupla">
+      <h2>A saída pelo estilo</h2>
+      <div>
+        <p>Se o produto não pode quebrar antes, ele pode <b>parecer velho antes</b>. A obsolescência migra da engenharia para a aparência.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>O modelo anual</h2>
+      <div>
+        <p>Em Detroit, nos anos 1920 e 1930,<br>a indústria automobilística passa a lançar um modelo por ano.<br>A <b>mudança formal substitui a mudança técnica<br></b>como motor de vendas.</p>
+      </div>
+    </section>
+  </div>
+
+  <figure class="midia pagina" data-revelar="">
+    <div class="midia__janela foto--d">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1563968743333-044cef800494?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Máquina industrial fotografada em preto e branco">
+    </div>
+    <figcaption class="midia__credito">Fotografia de Franck V. / Unsplash</figcaption>
+  </figure>
+
+  <div class="pagina">
+
+    <section class="dupla">
+      <h2>Brooks Stevens, 1954</h2>
+      <div>
+        <p>O designer norte-americano define obsolescência planejada como o esforço de despertar no comprador <b>o desejo de ter algo um pouco mais novo, um pouco antes do necessário.</b></p>
+        <p class="miudo"><br></p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Styling: a chave do processo</h2>
+      <div>
+        <p>Estilização formal do produto sem alteração de função.<br>Não é ornamento inocente: <b>é instrumento econômico.</b></p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Cor como estratégia</h2>
+      <div>
+        <p>A cor entra na indústria como resposta ao subconsumo: um jeito de tornar obsoleto o que ainda serve.</p>
+        <p class="miudo">Base: Blaszczyk, citada em Powers, <em>On Trend</em>.</p>
+      </div>
+    </section>
+  </div>
+
+  <figure class="midia pagina" data-revelar="">
+    <div class="midia__janela foto--e">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1581079289196-67865ea83118?q=80&amp;w=2069&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mão segurando uma amostra de material laranja sobre uma mesa com cartelas de cor">
+    </div>
+    <figcaption class="midia__credito">Fotografia de Mika Baumeister / Unsplash</figcaption>
+  </figure>
+
+  <div class="pagina">
+
+    <section class="dupla">
+      <h2>A moda como laboratório</h2>
+      <div>
+        <p>A moda foi onde essa lógica se organizou primeiro:<br>mudança sazonal, imitação acelerada, obsolescência industrializada. Depois se espalhou para móveis, eletrodomésticos, carros e telas.</p>
+        <p class="miudo">Base: Powers, <em>On Trend</em>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Do ano para o mês</h2>
+      <div>
+        <p>Relatos do início do século XX já registram lojas de Nova York sem estações definidas, com troca de mercadoria a cada mês.</p>
+        <p>O ciclo encurta desde então. Hoje ele cabe em uma semana.</p>
+      </div>
+    </section>
+  </div>
+
+  <figure class="midia pagina" data-revelar="">
+    <div class="midia__janela foto--f">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1477120206578-46b3ca98a4e2?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Interior de loja com revistas expostas na parede e uma mesa redonda de madeira">
+    </div>
+    <figcaption class="midia__credito">Fotografia de Jason Briscoe / Unsplash</figcaption>
+  </figure>
+
+  <div class="pagina">
+
+    <section class="dupla">
+      <h2>Um profissional nessa engrenagem</h2>
+      <div>
+        <p>Alguém precisa desenhar a diferença que fará<br>o modelo do ano passado parecer velho.<br><b>Esse alguém tem nome, formação e diploma.</b></p>
+      </div>
+    </section>
+  </div>
+
+  <figure class="midia pagina" data-revelar="">
+    <div class="midia__janela foto--g">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1498075702571-ecb018f3752d?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Mão desenhando letras em papel vegetal com lapiseira">
+    </div>
+    <figcaption class="midia__credito">Fotografia de Kelly Sikkema / Unsplash</figcaption>
+  </figure>
+
+  <div class="pagina">
+
+    <figure class="citacao citacao--longa">
+      <blockquote>
+        <p>“Numa era de produção em massa, em que tudo precisa ser planejado e projetado, <b>o design se tornou a mais poderosa ferramenta com que o homem molda seus instrumentos e ambientes</b> — e, por extensão, a sociedade e a si mesmo.”</p>
+      </blockquote>
+      <figcaption>Victor Papanek, <em>Design for the Real World</em>, 1971. Tradução livre.</figcaption>
+      <p class="depois">Uma ferramenta poderosa que serve tanto para resolver quanto para vender.</p>
+    </figure>
+
+    <section class="dupla">
+      <h2>A conta que sobra</h2>
+      <div>
+        <p>Cada ciclo encurtado é matéria-prima extraída, energia gasta e resíduo produzido. A obsolescência tem endereço físico: o aterro.</p>
+      </div>
+    </section>
+  </div>
+
+  <figure class="midia pagina" data-revelar="">
+    <div class="midia__janela foto--h">
+      <img loading="lazy" src="https://images.unsplash.com/flagged/photo-1572213426852-0e4ed8f41ff6?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Animal pastando junto a uma grande pilha de lixo em uma encosta costeira">
+    </div>
+    <figcaption class="midia__credito">Fotografia de Antoine Giret / Unsplash</figcaption>
+  </figure>
+
+  <div class="pagina">
+
+    <section class="dupla">
+      <h2>Pausa para discussão</h2>
+      <div>
+        <p>Existe diferença entre <b>criar o novo</b> e<br><b>fabricar a insatisfação com o velho</b>?</p>
+        
+      </div>
+    </section>
+
+    <hr class="regra">
+
+    <section class="capa foto--l">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1620912189875-3fdb2380621b?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Pessoa de jaqueta escura segurando uma folha impressa em branco">
+      <h2 class="capa__titulo">A invenção de uma profissão</h2>
+      <p class="capa__credito">Fotografia de Milad Fakurian / Unsplash</p>
+    </section>
+
+    <section class="dupla">
+      <h2>O outro lado da<br>mesma história</h2>
+      <div>
+        <p>Até aqui, o novo era empurrado de <b>cima para baixo</b>.<br>A partir dos anos 1960, surge a ideia oposta: <b>o novo nasce embaixo</b>, e é preciso ir buscá-lo.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Uma inversão de crença</h2>
+      <div>
+        <p>Um observador da época resume:<br><b>os novos conceitos sociais não descem mais, eles sobem</b>.</p>
+        <p class="miudo">Base: Powers, <em>On Trend</em>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Da futurologia ao balcão</h2>
+      <div>
+        <p>Os métodos de previsão nascidos na Guerra Fria migram para o mundo dos negócios. O que era planejamento militar vira consultoria de marketing.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>1974: nasce a indústria</h2>
+      <div>
+        <p>Faith Popcorn funda a BrainReserve.<br>Nos anos 1990 será chamada de “a Nostradamus do marketing”.</p>
+        <p class="miudo">Base: Powers, <em>On Trend</em>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>O que ela vendia</h2>
+      <div>
+        <p>Não um produto, não uma campanha: uma leitura do que as pessoas iam querer. <b>A ansiedade sobre o futuro vira mercadoria</b>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>1997: o artigo que criou uma profissão</h2>
+      <div>
+        <p>Malcolm Gladwell publica <em>The Coolhunt</em> na <em>New Yorker</em>. O termo “<b>coolhunting</b>” é, em boa medida, invenção do próprio artigo.</p>
+        <p class="miudo">Base: Powers, <em>On Trend</em>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2><b>O que faz um coolhunter?</b></h2>
+      <div>
+        <ul class="itens">
+          <li>Percorrer periferias, subculturas, feiras e ruas.</li>
+          <li>Fotografar, catalogar, documentar.</li>
+          <li>Vender o achado para quem quer chegar antes.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Os "caçadores"<br>segundo a imprensa</h2>
+      <div>
+        <p>Descritos como antropólogos do clima coletivo,<br>circulando com câmeras e cadernos de Antuérpia a Los Angeles em busca de tendências <b>jovens</b>.</p>
+        <p class="miudo">Base: Powers, <em>On Trend</em>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>A doutrina implícita</h2>
+      <div>
+        <p>Powers dá um nome a essa crença:<br>doutrina do mercado subcultural. <b>Grupos marginais<br>seriam sempre os primeiros a produzir o que depois<br>vira mainstream</b>.</p>
+      </div>
+    </section>
+
+    <figure class="citacao">
+      <blockquote>
+        <p>“Mas não é possível fabricar o <i>cool</i> <b>do nada</b>.”</p>
+      </blockquote>
+      <figcaption>Malcolm Gladwell, <em>The Coolhunt</em>, 1997. Tradução livre.</figcaption>
+      <p class="depois">Lido como alerta e como propaganda ao mesmo tempo.</p>
+    </figure>
+
+    <section class="dupla">
+      <h2>A circularidade</h2>
+      <div>
+        <p>Gladwell reconhece o paradoxo: descobrir o que é <i>cool</i> <br>faz o <i>cool </i>mudar de lugar; e porque ele muda mais rápido, precisamos de mais "caçadores".</p>
+        <p>A profissão fabrica a própria necessidade.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>O que restou disso</h2>
+      <div>
+        <p>Os <i>coolhunters</i> desapareceram como rótulo.<br>Os métodos ficaram. Hoje se chamam <b>cultural strategist</b>, <b>insights lead</b>, <b>innovation director</b>, <b>trend analyst</b>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>E hoje: a escuta automatizada</h2>
+      <div>
+        <p>Plataformas de escuta social, painéis de dados, modelos de linguagem. O caçador de rua virou dashboard — com os mesmos vieses e mais escala.</p>
+      </div>
+    </section>
+  </div>
+
+  <figure class="midia pagina" data-revelar="">
+    <div class="midia__janela foto--i">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1510074377623-8cf13fb86c08?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Fileira de monitores desligados sobre mesas de trabalho vazias">
+    </div>
+    <figcaption class="midia__credito">Fotografia de Annie Spratt / Unsplash</figcaption>
+  </figure>
+
+  <div class="pagina">
+
+    <section class="dupla">
+      <h2>Quem paga<br>define o que se vê</h2>
+      <div>
+        <p>Nenhum relatório é neutro: ele responde a uma pergunta encomendada por quem o financia.</p>
+        <p>Ler tendência é sempre ler duas coisas: <b>o sinal e o interesse</b>.</p>
+      </div>
+    </section>
+
+    <hr class="regra">
+
+    <section class="capa foto--m">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1716461309985-d6d75d2e7f0a?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Longa fileira de tecidos coloridos estendidos sobre uma encosta">
+      <h2 class="capa__titulo">O que a indústria faz com a cultura</h2>
+      <p class="capa__credito">Fotografia de Alex Poon / Unsplash</p>
+    </section>
+
+    <figure class="citacao">
+      <blockquote>
+        <p>“as tendências promovem mudança sem acontecimento”</p>
+      </blockquote>
+      <figcaption>Devon Powers, <em>On Trend</em>. Tradução livre.</figcaption>
+      <p class="depois">Muita agitação na superfície, <b>quase nada nas estruturas</b>.</p>
+    </figure>
+
+    <section class="dupla">
+      <h2>O que isso significa</h2>
+      <div>
+        <p>A indústria de tendências prevê mudanças no consumo, no gosto e na estética. Raramente prevê — ou deseja — <b>mudanças nas regras econômicas que a sustentam</b>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Segunda crítica:<br><b>a nuance apagada</b></h2>
+      <div>
+        <p>Quando uma prática de um grupo específico é transformada em tendência, sua <b>diferença é nivelada para caber em um mercado maior</b>.</p>
+        <p class="miudo">Base: Powers, <em>On Trend</em>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>O que se perde no caminho</h2>
+      <div>
+        <p>Da rua para a passarela, do território para o catálogo.<br>O que era pertencimento vira estampa.<br>O que era necessidade vira estilo.</p>
+      </div>
+    </section>
+  </div>
+
+  <figure class="midia pagina" data-revelar="">
+    <div class="midia__janela foto--j">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1606053929013-311c13f97b5f?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Pessoas separando pilhas de retalhos têxteis coloridos em um galpão industrial">
+    </div>
+    <figcaption class="midia__credito">Fotografia de Francois Le Nguyen / Unsplash</figcaption>
+  </figure>
+
+  <div class="pagina">
+
+    <section class="dupla">
+      <h2>Terceira crítica:<br><b>o extrativismo cultural</b></h2>
+      <div>
+        <p>Na busca pelo novo, a indústria minera o mundo inteiro atrás de material aproveitável. Powers descreve isso como parceria global e como aparato de colonização cultural, ao mesmo tempo.</p>
+      </div>
+    </section>
+
+    <figure class="citacao">
+      <blockquote>
+        <p>&nbsp; o futuro tomado como “nada mais que uma projeção de tendências passadas”</p>
+      </blockquote>
+      <figcaption>Jennifer Gidley, <em>The Future</em>. Tradução livre.</figcaption>
+      <p class="depois">Trend spotting:<br>apelo contemporâneo, fundamento frágil.</p>
+    </figure>
+
+    <section class="dupla">
+      <h2>Mas não é uma condenação</h2>
+      <div>
+        <p>Powers não pede o abandono das tendências.<br>Pede prestação de contas: <b>quem afirma, com base em quê,<br>e a serviço de quem</b>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Quatro perguntas para qualquer relatório</h2>
+      <div>
+        <ol class="itens itens--numerada">
+          <li>Quem escreveu e quem pagou?</li>
+          <li>Qual evidência sustenta a afirmação?</li>
+          <li>De onde o material foi retirado, e essa origem é creditada?</li>
+          <li>Quem lucra se eu acreditar nisto?</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>O designer como leitor crítico</h2>
+      <div>
+        <p>Enquanto Designer, você não precisa recusar o relatório de tendências.<br>Precisa saber lê-lo como um documento interessado —<br>como se lê um <i>release </i>de empresa.</p>
+      </div>
+    </section>
+
+    <section class="declaracao">
+      <p>Existe diferença entre criar o novo e fabricar a insatisfação com o velho?</p>
+      <p class="miudo" style="margin-top:1.5em"><br></p>
+    </section>
+
+    <hr class="regra">
+
+    <section class="capa foto--n">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1691430596542-19240cc2c038?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Amontoado de gravatas e botões de diferentes tipos">
+      <h2 class="capa__titulo">Engenharia reversa do cool</h2>
+      <p class="capa__credito">Fotografia de Eric Prouzet / Unsplash</p>
+    </section>
+
+    <section class="dupla">
+      <h2>Antes da atividade</h2>
+      <div>
+        <p>Vamos fazer o caminho inverso do <i>coolhunter</i>. Em vez de caçar o novo, vamos tentar <b>rastrear de onde veio o que já é comum</b>.</p>
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>A tarefa</h2>
+      <div>
+        <p>Em trios, escolham uma estética ou produto hoje completamente comum.</p>
+        <p class="miudo">Sugestões: tênis retrô, cerveja artesanal, tipografia manuscrita em embalagem, roupa oversized, cerâmica imperfeita, filtro de foto granulado.</p>
+        
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Quatro perguntas para responder</h2>
+      <div>
+        <ol class="itens itens--numerada">
+          <li><strong>Onde nasceu?</strong> Que grupo, lugar ou prática originou isso?</li>
+          <li><strong>Quem capturou?</strong> Marca, agência, plataforma, influenciador?</li>
+          <li><strong>O que se perdeu?</strong> Que sentido original desapareceu na tradução?</li>
+          <li><strong>Quem lucrou?</strong> E quem produziu sem lucrar?</li>
+        </ol>
+        
+      </div>
+    </section>
+
+    <section class="dupla">
+      <h2>Fechamento</h2>
+      <div>
+        <p>Toda tendência tem uma origem que o relatório não credita. <b>Procurar essa origem é parte do trabalho — e é também uma posição ética.</b></p>
+        <p class="miudo">Próxima aula: forças, valores e adotantes.</p>
+        
+      </div>
+    </section>
+
+    <hr class="regra">
+
+    <section class="referencias">
+      <h2>Referências desta aula</h2>
+      <ul>
+        <li>GIDLEY, Jennifer M. <em>The Future</em>: a very short introduction. Oxford: Oxford University Press, 2017.</li>
+        <li>GLADWELL, Malcolm. <em>The Coolhunt</em>. The New Yorker, 17 mar. 1997.</li>
+        <li>PAPANEK, Victor. <em>Design for the Real World</em>: human ecology and social change. 2. ed. Chicago: Academy Chicago Publishers, 1985.</li>
+        <li>POWERS, Devon. <em>On Trend</em>: the business of forecasting the future. Urbana: University of Illinois Press, 2019.</li>
+      </ul>
+    </section>
+
+    <section class="referencias">
+      <h2>Para seguir adiante</h2>
+      <ul>
+        <li>ERNER, Guillaume. <em>Vítimas da moda?</em>: como criamos, por que a seguimos. São Paulo: SENAC, 2005.</li>
+        <li>FORTY, Adrian. <em>Objetos de desejo</em>: design e sociedade desde 1750. São Paulo: Cosac Naify, 2007.</li>
+        <li>LIPOVETSKY, Gilles. <em>O império do efêmero</em>: a moda e seu destino nas sociedades modernas. São Paulo: Companhia das Letras, 2009.</li>
+        <li>PACKARD, Vance. <em>The Waste Makers</em>. Nova York: David McKay, 1960.</li>
+      </ul>
+    </section>
+
+    <hr class="regra">
+
+    <footer class="rodape">
+      <p>Fotografias publicadas no Unsplash sob licença que permite uso comercial, creditadas individualmente junto a cada imagem. As imagens são ilustrativas e não retratam os fatos, empresas ou períodos mencionados no texto ao lado delas.</p>
+      <p>Material didático de uso interno. Tendências Contemporâneas do Design, Aula 3.</p>
+    </footer>
+
+  </div>
+
+</main>
+
+<script>
+/* =========================================================
+   REVELAÇÃO POR SCROLL
+   Para cada faixa, calculamos um progresso de 0 a 1 conforme
+   ela sobe pela tela e gravamos esse número na variável CSS
+   --p. O CSS lê --p para definir a altura da moldura e a
+   escala da foto.
+   ========================================================= */
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var faixas = Array.prototype.slice.call(document.querySelectorAll('[data-revelar]'));
+  var pendente = false;
+
+  function atualizar(){
+    pendente = false;
+    var altura = window.innerHeight;
+    var curso = altura * 0.55;
+
+    faixas.forEach(function(faixa){
+      var topo = faixa.getBoundingClientRect().top;
+      var p = (altura - topo) / curso;
+      faixa.style.setProperty('--p', Math.min(1, Math.max(0, p)).toFixed(3));
+    });
+  }
+
+  function agendar(){
+    if (!pendente){ pendente = true; requestAnimationFrame(atualizar); }
+  }
+
+  window.addEventListener('scroll', agendar, {passive:true});
+  window.addEventListener('resize', agendar);
+  atualizar();
+})();
+</script>
+
+
+<!-- =========================================================
+     CAMADA DE EDIÇÃO
+     Acrescentada depois do documento. Nada aqui altera o
+     layout enquanto o modo edição está desligado: todo o CSS
+     está preso a .modo-edicao ou à barra .ed-barra, e a barra
+     é criada por script (não existe no HTML de origem).
+     Ctrl/Cmd + E liga e desliga. Ctrl/Cmd + S baixa o arquivo.
+     ========================================================= -->
+<style id="ed-css">
+.ed-barra{
+  position:fixed;right:1rem;bottom:1rem;z-index:9999;
+  display:flex;gap:.4rem;align-items:center;
+  font-family:var(--fonte);font-size:.8rem;
+}
+.ed-barra button{
+  font:inherit;font-weight:500;letter-spacing:-.01em;
+  background:var(--cor-tinta);color:var(--cor-fundo);
+  border:1px solid var(--cor-tinta);border-radius:999px;
+  padding:.5rem .95rem;cursor:pointer;
+  opacity:.25;transition:opacity .15s ease;
+}
+.ed-barra:hover button,
+body.modo-edicao .ed-barra button{opacity:1}
+.ed-barra button.ed-secundario{
+  background:var(--cor-fundo);color:var(--cor-tinta);
+  border-color:var(--cor-linha);
+}
+.ed-barra button[hidden]{display:none}
+
+body.modo-edicao [contenteditable="true"]{
+  outline:1px dashed rgba(0,0,0,.22);outline-offset:5px;
+}
+body.modo-edicao [contenteditable="true"]:hover{outline-color:rgba(0,0,0,.45)}
+body.modo-edicao [contenteditable="true"]:focus{
+  outline:2px solid var(--cor-tinta);outline-offset:5px;
+}
+body.modo-edicao main img{cursor:pointer}
+body.modo-edicao main img:hover{opacity:.72}
+
+.ed-recado{
+  position:fixed;left:1rem;bottom:1rem;z-index:9999;
+  max-width:34ch;
+  font-family:var(--fonte);font-size:.78rem;line-height:1.3;
+  color:var(--cor-apoio);
+  background:var(--cor-fundo);
+  border:1px solid var(--cor-linha);border-radius:.4rem;
+  padding:.6rem .75rem;
+}
+@media print{.ed-barra,.ed-recado{display:none !important}}
+</style>
+
+<script id="ed-js">
+(function(){
+  "use strict";
+
+  /* Blocos de texto que podem ser editados. A estrutura
+     (section, div, figure, hr, grid) fica intocável. */
+  var SELETOR_TEXTO = 'header p, main h1, main h2, main h3, main p, main li, main figcaption';
+
+  /* Blocos de uma linha só: Enter não cria irmão neles. */
+  var SELETOR_LINHA_UNICA = 'h1,h2,h3,figcaption,.capa__credito,.midia__credito';
+
+  var editando = false;
+  var sujo = false;
+  var barra, botaoModo, botaoSalvar, recado;
+
+  function blocos(){
+    return Array.prototype.slice.call(document.querySelectorAll(SELETOR_TEXTO));
+  }
+
+  function marcarSujo(){
+    if (sujo) return;
+    sujo = true;
+    botaoSalvar.textContent = 'baixar HTML •';
+  }
+
+  /* ---------- ligar / desligar ---------- */
+
+  function ligar(){
+    editando = true;
+    document.body.classList.add('modo-edicao');
+    blocos().forEach(function(el){
+      el.setAttribute('contenteditable','true');
+      el.setAttribute('spellcheck','true');
+    });
+    botaoModo.textContent = 'sair da edição';
+    botaoSalvar.hidden = false;
+    mostrarRecado('Modo edição. Clique num texto para reescrever. Clique numa foto para trocar a imagem. Enter cria um novo parágrafo ou item; Shift+Enter quebra a linha. Ctrl+S baixa o arquivo.');
+  }
+
+  function desligar(){
+    editando = false;
+    document.body.classList.remove('modo-edicao');
+    blocos().forEach(function(el){
+      el.removeAttribute('contenteditable');
+      el.removeAttribute('spellcheck');
+    });
+    botaoModo.textContent = 'editar';
+    botaoSalvar.hidden = !sujo;
+    esconderRecado();
+  }
+
+  function alternar(){ editando ? desligar() : ligar(); }
+
+  function mostrarRecado(texto){
+    if (!recado){
+      recado = document.createElement('div');
+      recado.className = 'ed-recado';
+      recado.setAttribute('data-editor','');
+      document.body.appendChild(recado);
+    }
+    recado.textContent = texto;
+    clearTimeout(mostrarRecado._t);
+    mostrarRecado._t = setTimeout(esconderRecado, 9000);
+  }
+  function esconderRecado(){ if (recado){ recado.remove(); recado = null; } }
+
+  /* ---------- proteções de digitação ---------- */
+
+  document.addEventListener('paste', function(e){
+    if (!editando) return;
+    var alvo = e.target.closest && e.target.closest('[contenteditable="true"]');
+    if (!alvo) return;
+    e.preventDefault();
+    var texto = (e.clipboardData || window.clipboardData).getData('text/plain');
+    document.execCommand('insertText', false, texto.replace(/\s*\n\s*/g,' '));
+    marcarSujo();
+  }, true);
+
+  document.addEventListener('drop', function(e){ if (editando) e.preventDefault(); }, true);
+  document.addEventListener('dragover', function(e){ if (editando) e.preventDefault(); }, true);
+
+  document.addEventListener('input', function(){ if (editando) marcarSujo(); }, true);
+
+  document.addEventListener('keydown', function(e){
+    var meta = e.ctrlKey || e.metaKey;
+
+    if (meta && (e.key === 'e' || e.key === 'E')){ e.preventDefault(); alternar(); return; }
+    if (meta && (e.key === 's' || e.key === 'S')){ e.preventDefault(); salvar(); return; }
+    if (!editando) return;
+
+    var alvo = e.target.closest && e.target.closest('[contenteditable="true"]');
+    if (!alvo) return;
+
+    if (e.key === 'Enter'){
+      if (e.shiftKey) return;                          /* quebra de linha normal */
+      e.preventDefault();
+      if (alvo.matches(SELETOR_LINHA_UNICA)) return;   /* títulos e créditos: uma linha */
+      var novo = document.createElement(alvo.tagName);
+      if (alvo.className) novo.className = alvo.className;
+      novo.setAttribute('contenteditable','true');
+      novo.setAttribute('spellcheck','true');
+      novo.appendChild(document.createElement('br'));
+      alvo.parentNode.insertBefore(novo, alvo.nextSibling);
+      focar(novo);
+      marcarSujo();
+      return;
+    }
+
+    /* Backspace num bloco vazio apaga o próprio bloco,
+       nunca os blocos vizinhos nem a estrutura. */
+    if (e.key === 'Backspace' && alvo.textContent.trim() === ''){
+      e.preventDefault();
+      var irmaos = alvo.parentNode.querySelectorAll('[contenteditable="true"]');
+      if (irmaos.length < 2) return;
+      var anterior = alvo.previousElementSibling;
+      alvo.remove();
+      if (anterior && anterior.getAttribute('contenteditable') === 'true') focar(anterior, true);
+      marcarSujo();
+    }
+  }, true);
+
+  function focar(el, fim){
+    el.focus();
+    var faixa = document.createRange();
+    faixa.selectNodeContents(el);
+    faixa.collapse(!fim);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(faixa);
+  }
+
+  /* ---------- troca de imagem ---------- */
+
+  document.addEventListener('click', function(e){
+    if (!editando) return;
+    var img = e.target.closest && e.target.closest('main img');
+    if (!img) return;
+    e.preventDefault();
+    var url = window.prompt('Endereço da imagem (URL ou caminho do arquivo):', img.getAttribute('src'));
+    if (url === null) return;
+    url = url.trim();
+    if (url) img.setAttribute('src', url);
+    var alt = window.prompt('Descrição da imagem (texto alternativo):', img.getAttribute('alt') || '');
+    if (alt !== null) img.setAttribute('alt', alt.trim());
+    marcarSujo();
+  }, true);
+
+  /* ---------- salvar ---------- */
+
+  function salvar(){
+    var copia = document.documentElement.cloneNode(true);
+
+    copia.querySelectorAll('[data-editor]').forEach(function(n){ n.remove(); });
+    copia.querySelectorAll('[contenteditable]').forEach(function(n){
+      n.removeAttribute('contenteditable');
+      n.removeAttribute('spellcheck');
+    });
+    /* o script de rolagem grava --p direto no elemento; não vai para o arquivo */
+    copia.querySelectorAll('[style]').forEach(function(n){
+      n.style.removeProperty('--p');
+      if (!n.getAttribute('style')) n.removeAttribute('style');
+    });
+    var corpo = copia.querySelector('body');
+    if (corpo){
+      corpo.classList.remove('modo-edicao');
+      if (!corpo.className) corpo.removeAttribute('class');
+    }
+
+    var html = '<!DOCTYPE html>\n' + copia.outerHTML + '\n';
+    var blob = new Blob([html], {type:'text/html;charset=utf-8'});
+    var base = (location.pathname.split('/').pop() || 'documento.html').replace(/\.html?$/i,'');
+    base = decodeURIComponent(base).replace(/-editado$/,'');
+
+    var link = document.createElement('a');
+    var endereco = URL.createObjectURL(blob);
+    link.href = endereco;
+    link.download = base + '-editado.html';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(function(){ URL.revokeObjectURL(endereco); }, 4000);
+
+    sujo = false;
+    botaoSalvar.textContent = 'baixar HTML';
+    mostrarRecado('Arquivo baixado como ' + base + '-editado.html. Ele já vem com o modo edição embutido: para virar a versão oficial, é só substituir o original pela cópia.');
+  }
+
+  window.addEventListener('beforeunload', function(e){
+    if (!sujo) return;
+    e.preventDefault();
+    e.returnValue = '';
+  });
+
+  /* ---------- barra ---------- */
+
+  barra = document.createElement('div');
+  barra.className = 'ed-barra';
+  barra.setAttribute('data-editor','');
+
+  botaoSalvar = document.createElement('button');
+  botaoSalvar.type = 'button';
+  botaoSalvar.className = 'ed-secundario';
+  botaoSalvar.textContent = 'baixar HTML';
+  botaoSalvar.hidden = true;
+  botaoSalvar.addEventListener('click', salvar);
+
+  botaoModo = document.createElement('button');
+  botaoModo.type = 'button';
+  botaoModo.textContent = 'editar';
+  botaoModo.addEventListener('click', alternar);
+
+  barra.appendChild(botaoSalvar);
+  barra.appendChild(botaoModo);
+  document.body.appendChild(barra);
+
+  if (/[?&]editar\b/.test(location.search) || location.hash === '#editar') ligar();
+})();
+</script>
+
+
+
+</body></html>
